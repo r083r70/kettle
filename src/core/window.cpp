@@ -1,5 +1,7 @@
 #include "window.h"
 
+#include "app.h"
+
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
@@ -25,7 +27,6 @@ namespace kettle
 
 		// Setup callback
 		glfwSetWindowCloseCallback(m_NativeWindow, GLFW_CALLBACK(onClose));
-		glfwSetWindowSizeCallback(m_NativeWindow, GLFW_CALLBACK_TWO_ARGS(onResize));
 
 		const int32_t status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		return status;
@@ -34,7 +35,6 @@ namespace kettle
 	void Window::deinit()
 	{
 		// Remove callbacks
-		glfwSetWindowSizeCallback(m_NativeWindow, nullptr);
 		glfwSetWindowCloseCallback(m_NativeWindow, nullptr);
 
 		glfwDestroyWindow(m_NativeWindow);
@@ -56,11 +56,6 @@ namespace kettle
 
 	void Window::onClose()
 	{
-
-	}
-
-	void Window::onResize(int32_t width, int32_t height)
-	{
-
+		App::get()->terminate();
 	}
 }

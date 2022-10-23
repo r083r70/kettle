@@ -19,7 +19,6 @@ namespace kettle
 
 	private:
 		void onClose();
-		void onResize(int32_t width, int32_t height);
 
 	private:
 		GLFWwindow* m_NativeWindow;

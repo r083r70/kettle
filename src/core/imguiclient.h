@@ -1,11 +1,10 @@
 #pragma once
 
-#include "window.h"
 #include <cstdint>
 
 namespace kettle
 {
-	//class Window;
+	class Window;
 
 	class ImGuiClient
 	{
@@ -14,7 +13,6 @@ namespace kettle
 		void deinit();
 
 		void preTick(int32_t width, int32_t height);
-		void tick();
 		void postTick();
 	};
 };

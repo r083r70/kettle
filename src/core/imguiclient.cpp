@@ -9,11 +9,6 @@
 
 namespace kettle
 {
-    ImVec2 CreateImGuiVector(int32_t x, int32_t y)
-    {
-        return ImVec2{static_cast<float>(x), static_cast<float>(y)};
-    }
-
     bool ImGuiClient::init(const Window& window)
 	{
 		ImGui::CreateContext();
@@ -28,7 +23,8 @@ namespace kettle
 		// Setup Size
         int32_t width, height;
 		window.getSize(width, height);
-		io.DisplaySize = CreateImGuiVector(width, height);
+		io.DisplaySize.x = width;
+		io.DisplaySize.y = height;
 
 		// Setup OpenGL
         bool status = ImGui_ImplGlfw_InitForOpenGL(window.getNativeWindow(), true);
@@ -46,15 +42,13 @@ namespace kettle
     void ImGuiClient::preTick(int32_t width, int32_t height)
     {
 		ImGuiIO& io = ImGui::GetIO();
-		io.DisplaySize = CreateImGuiVector(width, height);
+		io.DisplaySize.x = width;
+		io.DisplaySize.y = height;
 
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
-    }
-
-    void ImGuiClient::tick()
-    {
+		
         ImGui::DockSpaceOverViewport();
     }
     
