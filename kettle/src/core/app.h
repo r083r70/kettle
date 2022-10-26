@@ -23,6 +23,9 @@ namespace kettle
 		void pushLayer(Args... args);
 		void popLayer();
 
+		void onWindowHidden();
+		void showWindow();
+
 		void terminate();
 
 	private:

@@ -17,6 +17,8 @@ namespace kettle
 		inline GLFWwindow* getNativeWindow() const { return m_NativeWindow; }
 		void getSize(int32_t& width, int32_t& height) const;
 
+		void showWindow();
+
 	private:
 		void onClose();
 

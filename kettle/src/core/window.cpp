@@ -54,8 +54,14 @@ namespace kettle
 		glfwGetWindowSize(m_NativeWindow, &width, &height);
 	}
 
+	void Window::showWindow()
+	{
+		glfwShowWindow(m_NativeWindow);
+	}
+
 	void Window::onClose()
 	{
-		App::get()->terminate();
+		glfwHideWindow(m_NativeWindow);
+		App::get()->onWindowHidden();
 	}
 }

@@ -1,5 +1,6 @@
 #include "app.h"
 
+#include <algorithm>
 #include <cassert>
 #include <cstdint>
 
@@ -30,6 +31,23 @@ namespace kettle
 		m_Layers.pop_back();
 		layer->stop();
 		delete layer;
+	}
+
+	void App::onWindowHidden()
+	{
+		// Try handle it in a Layer (follow stack order)
+		for (auto it = m_Layers.end(); it != m_Layers.begin();)
+		{
+			if ((*--it)->onWindowHidden())
+				return;
+		}
+
+		terminate();
+	}
+
+	void App::showWindow()
+	{
+		m_Window.showWindow();
 	}
 
 	void App::terminate()

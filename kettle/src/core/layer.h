@@ -10,5 +10,7 @@ namespace kettle
 		virtual void start() {}
 		virtual void tick() = 0;
 		virtual void stop() {}
+
+		virtual bool onWindowHidden() { return false; }
 	};	
 }
